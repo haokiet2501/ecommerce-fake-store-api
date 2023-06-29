@@ -1,5 +1,8 @@
+import useRoutesElements from './useRoutesElements'
+
 function App() {
-  return <div className='text-blue-500'>Hello</div>
+  const routesElements = useRoutesElements()
+  return <div>{routesElements}</div>
 }
 
 export default App
