@@ -1,5 +1,5 @@
 export const path = {
   home: '/',
-  product: '/product',
-  productId: '/productId'
+  products: '/products',
+  productId: '/products/:id'
 }
