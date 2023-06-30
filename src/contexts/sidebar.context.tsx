@@ -6,9 +6,14 @@ interface SideBarContextInterface {
   handleClose: () => void
 }
 
-export const SidebarContext = createContext<SideBarContextInterface | null>(
-  null
-)
+const initialSiderContext: SideBarContextInterface = {
+  isOpen: Boolean(),
+  setIsOpen: () => null,
+  handleClose: () => null
+}
+
+export const SidebarContext =
+  createContext<SideBarContextInterface>(initialSiderContext)
 
 const SidebarProvider = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
