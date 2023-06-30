@@ -11,12 +11,6 @@ export interface Product {
   }
 }
 
-export interface ProductList {
-  products: Product[]
-}
-
-export interface ProductListConfig {
-  page?: number | string
-  limit?: number | string
-  order?: 'asc' | 'desc'
-}
+// export interface ProductList {
+//   productItem: Product[]
+// }
