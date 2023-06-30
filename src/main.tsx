@@ -18,11 +18,16 @@ const queryClient = new QueryClient({
 // import BrowserRouter
 import { BrowserRouter } from 'react-router-dom'
 
+// import sidebar provider
+import SidebarProvider from './contexts/sidebar.context.tsx'
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <SidebarProvider>
+          <App />
+        </SidebarProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </BrowserRouter>
