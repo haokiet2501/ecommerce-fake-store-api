@@ -4,11 +4,13 @@ import { Product } from 'src/types/product.type'
 interface CartContextInterface {
   cart: Product[]
   handleAddToCart: (product: Product, id: number) => void
+  handleRemoveCartItem: (id: number) => void
 }
 
 const initialCartContext: CartContextInterface = {
   cart: [],
-  handleAddToCart: () => null
+  handleAddToCart: () => null,
+  handleRemoveCartItem: () => null
 }
 
 export const CartContextApi =
@@ -17,6 +19,7 @@ export const CartContextApi =
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<Product[]>([])
 
+  // Add cart
   const handleAddToCart = (product: Product, id: number) => {
     const newItem = { ...product, amount: 1 }
     const cartItem = [...cart].find((item) => item.id === id)
@@ -35,8 +38,16 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
+  // Remove cart
+  const handleRemoveCartItem = (id: number) => {
+    const removeCart = cart.filter((item) => item.id !== id)
+    setCart(removeCart)
+  }
+
   return (
-    <CartContextApi.Provider value={{ cart, handleAddToCart }}>
+    <CartContextApi.Provider
+      value={{ cart, handleAddToCart, handleRemoveCartItem }}
+    >
       {children}
     </CartContextApi.Provider>
   )
