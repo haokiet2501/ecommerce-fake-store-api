@@ -21,12 +21,17 @@ import { BrowserRouter } from 'react-router-dom'
 // import sidebar provider
 import SidebarProvider from './contexts/sidebar.context.tsx'
 
+// import cart provider
+import CartProvider from './contexts/cart.context.tsx'
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <SidebarProvider>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </SidebarProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

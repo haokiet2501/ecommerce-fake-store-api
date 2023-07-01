@@ -2,12 +2,15 @@ import { Product } from 'src/types/product.type'
 import { BsEyeFill, BsPlus } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { path } from 'src/constant/path'
+import { useContext } from 'react'
+import { CartContextApi } from 'src/contexts/cart.context'
 
 interface IProps {
   product: Product
 }
 
 export default function ProductItem({ product }: IProps) {
+  const { handleAddToCart } = useContext(CartContextApi)
   return (
     <div className='flex flex-col'>
       <div className='group relative mb-4 h-[300px] overflow-hidden border border-[#e4e4e4] transition'>
@@ -23,7 +26,7 @@ export default function ProductItem({ product }: IProps) {
         </div>
         {/* Button */}
         <div className='absolute -right-11 top-0 flex flex-col items-center justify-center gap-y-2 bg-red-500/40 p-2 opacity-0 transition-all duration-300 group-hover:right-0 group-hover:opacity-100'>
-          <button>
+          <button onClick={() => handleAddToCart(product, product.id)}>
             <div className='flex h-8 w-8 items-center justify-center bg-red-500 text-white'>
               <BsPlus className='text-3xl' />
             </div>
