@@ -7,7 +7,8 @@ import { CartContextApi } from 'src/contexts/cart.context'
 import { useContext } from 'react'
 
 export default function CartItem({ item }: { item: Product }) {
-  const { handleRemoveCartItem, increaseAmount, decreaseAmount } = useContext(CartContextApi)
+  const { handleRemoveCartItem, increaseAmount, decreaseAmount } =
+    useContext(CartContextApi)
   return (
     <div className='flex w-full gap-x-4 border-gray-200 py-2 text-gray-600 lg:px-2 [&:not(:last-child)]:border-b'>
       <div className='flex min-h-[150px] w-full items-center gap-x-4'>
