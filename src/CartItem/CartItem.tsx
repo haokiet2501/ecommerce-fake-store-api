@@ -7,7 +7,7 @@ import { CartContextApi } from 'src/contexts/cart.context'
 import { useContext } from 'react'
 
 export default function CartItem({ item }: { item: Product }) {
-  const { handleRemoveCartItem, increaseAmount } = useContext(CartContextApi)
+  const { handleRemoveCartItem, increaseAmount, decreaseAmount } = useContext(CartContextApi)
   return (
     <div className='flex w-full gap-x-4 border-gray-200 py-2 text-gray-600 lg:px-2 [&:not(:last-child)]:border-b'>
       <div className='flex min-h-[150px] w-full items-center gap-x-4'>
@@ -36,10 +36,10 @@ export default function CartItem({ item }: { item: Product }) {
           <div className='flex h-[25px] gap-x-2 text-sm'>
             <div className='flex h-full max-w-[75px] flex-1 items-center border font-medium'>
               <div
-                // role='button'
-                // tabIndex={0}
-                // aria-hidden='true'
-                // onClick={() => decreaseAmount(item.id)}
+                role='button'
+                tabIndex={0}
+                aria-hidden='true'
+                onClick={() => decreaseAmount(item.id)}
                 className='flex h-full flex-1 cursor-pointer items-center justify-center border-r'
               >
                 <IoMdRemove />

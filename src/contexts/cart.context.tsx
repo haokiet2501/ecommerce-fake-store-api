@@ -7,7 +7,7 @@ interface CartContextInterface {
   handleRemoveCartItem: (id: number) => void
   clearAllItem: () => void
   increaseAmount: (id: number) => void
-  // decreaseAmount: (id: number) => void
+  decreaseAmount: (id: number) => void
 }
 
 const initialCartContext: CartContextInterface = {
@@ -16,7 +16,7 @@ const initialCartContext: CartContextInterface = {
   handleRemoveCartItem: () => null,
   clearAllItem: () => null,
   increaseAmount: () => null,
-  // decreaseAmount: () => null
+  decreaseAmount: () => null
 }
 
 export const CartContextApi =
@@ -61,23 +61,23 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     handleAddToCart(cartItem as Product, id)
   }
 
-  // // decreaseItem
-  // const decreaseAmount = (id: number) => {
-  //   const cartItem = cart.find((item) => item.id === id)
-  //   if (cartItem) {
-  //     const decreaseItem = cart.map((item) => {
-  //       if (item.id === id) {
-  //         return { ...item, amount: item.amount - 1 }
-  //       } else {
-  //         return item
-  //       }
-  //     })
-  //     setCart(decreaseItem)
-  //   }
-  //   if ((cartItem as Product).amount < 2) {
-  //     handleRemoveCartItem(id)
-  //   }
-  // }
+  // decreaseItem
+  const decreaseAmount = (id: number) => {
+    const cartItem = cart.find((item) => item.id === id)
+    if (cartItem) {
+      const decreaseItem = cart.map((item) => {
+        if (item.id === id) {
+          return { ...item, amount: item.amount - 1 }
+        } else {
+          return item
+        }
+      })
+      setCart(decreaseItem)
+    }
+    if ((cartItem as Product).amount < 2) {
+      handleRemoveCartItem(id)
+    }
+  }
 
   return (
     <CartContextApi.Provider
@@ -87,7 +87,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         handleRemoveCartItem,
         clearAllItem,
         increaseAmount,
-        // decreaseAmount
+        decreaseAmount
       }}
     >
       {children}
