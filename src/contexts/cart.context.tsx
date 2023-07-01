@@ -8,6 +8,7 @@ interface CartContextInterface {
   clearAllItem: () => void
   increaseAmount: (id: number) => void
   decreaseAmount: (id: number) => void
+  amount: number
 }
 
 const initialCartContext: CartContextInterface = {
@@ -16,7 +17,8 @@ const initialCartContext: CartContextInterface = {
   handleRemoveCartItem: () => null,
   clearAllItem: () => null,
   increaseAmount: () => null,
-  decreaseAmount: () => null
+  decreaseAmount: () => null,
+  amount: Number()
 }
 
 export const CartContextApi =
@@ -24,6 +26,7 @@ export const CartContextApi =
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<Product[]>([])
+  const [amount, setAmount] = useState<number>(0)
 
   // Add cart
   const handleAddToCart = (product: Product, id: number) => {
@@ -87,7 +90,8 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         handleRemoveCartItem,
         clearAllItem,
         increaseAmount,
-        decreaseAmount
+        decreaseAmount,
+        amount
       }}
     >
       {children}
