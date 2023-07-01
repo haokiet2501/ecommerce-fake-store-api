@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import { Product } from 'src/types/product.type'
 
 interface CartContextInterface {
@@ -27,6 +27,14 @@ export const CartContextApi =
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = useState<Product[]>([])
   const [amount, setAmount] = useState<number>(0)
+
+  // update item amount
+  useEffect(() => {
+    if (cart) {
+      const amount = cart.reduce((acc, cur) => acc + cur.amount, 0)
+      setAmount(amount)
+    }
+  }, [cart])
 
   // Add cart
   const handleAddToCart = (product: Product, id: number) => {
