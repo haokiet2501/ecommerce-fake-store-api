@@ -6,7 +6,7 @@ interface CartContextInterface {
   handleAddToCart: (product: Product, id: number) => void
   handleRemoveCartItem: (id: number) => void
   clearAllItem: () => void
-  // increaseAmount: (id: number) => void
+  increaseAmount: (id: number) => void
   // decreaseAmount: (id: number) => void
 }
 
@@ -15,7 +15,7 @@ const initialCartContext: CartContextInterface = {
   handleAddToCart: () => null,
   handleRemoveCartItem: () => null,
   clearAllItem: () => null,
-  // increaseAmount: () => null,
+  increaseAmount: () => null,
   // decreaseAmount: () => null
 }
 
@@ -55,11 +55,11 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setCart([])
   }
 
-  // // IncreaseItem
-  // const increaseAmount = (id: number) => {
-  //   const cartItem = cart.find((item) => item.id === id)
-  //   handleAddToCart(cartItem as Product, id)
-  // }
+  // IncreaseItem
+  const increaseAmount = (id: number) => {
+    const cartItem = cart.find((item) => item.id === id)
+    handleAddToCart(cartItem as Product, id)
+  }
 
   // // decreaseItem
   // const decreaseAmount = (id: number) => {
@@ -86,7 +86,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
         handleAddToCart,
         handleRemoveCartItem,
         clearAllItem,
-        // increaseAmount,
+        increaseAmount,
         // decreaseAmount
       }}
     >
