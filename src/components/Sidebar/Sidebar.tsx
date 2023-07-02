@@ -8,12 +8,12 @@ import { SidebarContext } from 'src/contexts/sidebar.context'
 
 export default function Sidebar() {
   const { isOpen, handleClose } = useContext(SidebarContext)
-  const { cart, clearAllItem } = useContext(CartContextApi)
+  const { cart, clearAllItem, total } = useContext(CartContextApi)
   return (
     <div
       className={`${
         isOpen ? 'right-0' : '-right-full'
-      } fixed top-0 z-20 h-full w-full cursor-default overflow-y-scroll bg-white px-4 shadow-2xl transition-all duration-500 md:w-[45vw] lg:w-[45vw] xl:w-[30vw]`}
+      } fixed top-0 z-20 h-full w-full cursor-default bg-white px-4 shadow-2xl transition-all duration-500 md:w-[45vw] lg:w-[45vw] xl:w-[30vw]`}
     >
       <div className='flex items-center justify-between border-b py-6'>
         <div className='text-sm font-semibold uppercase'>Giỏ hàng (0)</div>
@@ -31,14 +31,17 @@ export default function Sidebar() {
       <div>
         {cart.length > 0 ? (
           <>
-            {cart.map((item) => (
-              <CartItem key={item.id} item={item} />
-            ))}
+            <div className='flex h-[350px] flex-col overflow-y-auto overflow-x-hidden medium:h-[480px] lg:h-[480px] xl:h-[620px] 2xl:h-[850px]'>
+              {cart.map((item) => (
+                <CartItem key={item.id} item={item} />
+              ))}
+            </div>
 
-            <div className='w-full py-4'>
-              <div className='flex items-center justify-between'>
+            <div className='absolute bottom-0 z-10 mt-3 flex w-[91%] flex-col bg-white py-4'>
+              <div className='flex w-full items-center justify-between'>
                 <div className='text-base font-semibold uppercase text-gray-800'>
-                  <span>Tổng cộng:</span> $ 1000
+                  <span className='mr-2'>Tổng cộng:</span> ${' '}
+                  {parseFloat(Number(total).toFixed(2))}
                 </div>
 
                 <div
