@@ -5,10 +5,12 @@ import { BsCartX } from 'react-icons/bs'
 import { CartContextApi } from 'src/contexts/cart.context'
 import CartItem from 'src/CartItem'
 import { SidebarContext } from 'src/contexts/sidebar.context'
+import { Link } from 'react-router-dom'
+import { path } from 'src/constant/path'
 
 export default function Sidebar() {
   const { isOpen, handleClose } = useContext(SidebarContext)
-  const { cart, clearAllItem, total } = useContext(CartContextApi)
+  const { cart, clearAllItem, total, amount } = useContext(CartContextApi)
   return (
     <div
       className={`${
@@ -16,7 +18,7 @@ export default function Sidebar() {
       } fixed top-0 z-20 h-full w-full cursor-default bg-white px-4 shadow-2xl transition-all duration-500 md:w-[45vw] lg:w-[45vw] xl:w-[30vw]`}
     >
       <div className='flex items-center justify-between border-b py-6'>
-        <div className='text-sm font-semibold uppercase'>Giỏ hàng (0)</div>
+        <div className='text-sm font-semibold uppercase'>Cart ({amount})</div>
         <div
           onClick={handleClose}
           role='button'
@@ -31,7 +33,7 @@ export default function Sidebar() {
       <div>
         {cart.length > 0 ? (
           <>
-            <div className='flex h-[350px] flex-col overflow-y-auto overflow-x-hidden medium:h-[480px] lg:h-[480px] xl:h-[620px] 2xl:h-[850px]'>
+            <div className='flex h-[250px] flex-col overflow-y-auto overflow-x-hidden medium:h-[260px] lg:h-[380px] xl:h-[420px]'>
               {cart.map((item) => (
                 <CartItem key={item.id} item={item} />
               ))}
@@ -40,7 +42,7 @@ export default function Sidebar() {
             <div className='absolute bottom-0 z-10 mt-3 flex w-[91%] flex-col bg-white py-4'>
               <div className='flex w-full items-center justify-between'>
                 <div className='text-base font-semibold uppercase text-gray-800'>
-                  <span className='mr-2'>Tổng cộng:</span> ${' '}
+                  <span className='mr-2'>Total:</span> ${' '}
                   {parseFloat(Number(total).toFixed(2))}
                 </div>
 
@@ -53,6 +55,20 @@ export default function Sidebar() {
                 >
                   <FiTrash2 />
                 </div>
+              </div>
+              <div className='mt-4 flex flex-col gap-y-2'>
+                <Link
+                  to={`${path.home}`}
+                  className='flex w-full items-center justify-center rounded-md bg-gray-200 p-2 font-medium text-gray-500'
+                >
+                  View cart
+                </Link>
+                <Link
+                  to={`${path.home}`}
+                  className='flex w-full items-center justify-center rounded-md bg-slate-600 p-2 font-medium text-white'
+                >
+                  Checkout
+                </Link>
               </div>
             </div>
           </>

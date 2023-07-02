@@ -33,7 +33,7 @@ export default function ProductItem({ product }: IProps) {
           </button>
           <Link
             to={`${path.products}/${product.id}`}
-            className='text-primary flex h-8 w-8 items-center justify-center bg-white drop-shadow-xl'
+            className='flex h-8 w-8 items-center justify-center bg-white text-slate-700 drop-shadow-xl'
           >
             <BsEyeFill />
           </Link>
